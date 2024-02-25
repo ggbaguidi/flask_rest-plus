@@ -4,7 +4,7 @@ from flask import jsonify
 from flask_restx import Namespace, Resource
 
 
-api = Namespace('index', description='Index of Index views')
+api = Namespace('index', description='Index views Namespace')
 
 
 @api.route('/', methods=['GET'], strict_slashes=False)
@@ -13,7 +13,7 @@ class Index(Resource):
     """
     @api.doc('get_status')
     def get(self) -> str:
-        """ GET /api/v1/index
+        """ GET Status of API
         Return:
             - the status of the API
         """

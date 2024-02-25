@@ -8,7 +8,7 @@ app_views = Blueprint('app_views', __name__, url_prefix='/api/v1')
 
 api = Api(
     app=app_views,
-    title="My api",
+    title="My Backend API",
     version='1.0'
 )
 
