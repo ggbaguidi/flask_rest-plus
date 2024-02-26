@@ -1,20 +1,26 @@
 """Flask Application
 """
-from os import environ
 from flask import Flask
 from flask_cors import CORS
 from apis.v1.views import app_views
+from core.config.env import CONFIG
 
 
-app = Flask(__name__)
-app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
-app.register_blueprint(app_views, url_prefix='/api/v1')
-cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+def create_app() -> Flask:
+    """create application
+    """
+    _app = Flask(__name__)
+    _app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+    _app.register_blueprint(app_views, url_prefix='/api/v1')
+
+    return _app
 
 
 if __name__ == "__main__":
-    HOST = environ.get('BENINPETRO_API_HOST')
-    PORT = environ.get('BENINPETRO_API_PORT')
+    app = create_app()
+    cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+    HOST = CONFIG['BENINPETRO_API_HOST']
+    PORT = CONFIG['BENINPETRO_API_PORT']
     if not HOST:
         HOST = '0.0.0.0'
     if not PORT:

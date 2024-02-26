@@ -13,7 +13,7 @@ class Index(Resource):
     """
     @api.doc('get_status')
     def get(self) -> str:
-        """ GET Status of API
+        """GET Status of API
         Return:
             - the status of the API
         """
